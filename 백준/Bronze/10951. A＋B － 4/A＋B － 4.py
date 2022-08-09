@@ -1,6 +1,8 @@
+from sys import stdin
+
 while True:
     try:
-        A, B = map(int,input().split())
-        print(sum((A,B)))
+        a, b = list(map(int, stdin.readline().split()))
+        print(a+b)
     except:
         break

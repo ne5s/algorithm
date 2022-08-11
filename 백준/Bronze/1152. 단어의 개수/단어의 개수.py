@@ -1,5 +1,7 @@
 from sys import stdin
 
 a = stdin.readline().strip()
-li = a.split()
-print(len(li))
+if a =="":
+  print(0)
+else:
+  print(a.count(" ")+1)

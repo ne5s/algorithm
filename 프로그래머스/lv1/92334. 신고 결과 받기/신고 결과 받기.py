@@ -2,7 +2,7 @@ def solution(id_list, report, k):
     l = len(id_list)
     answer = [0]*l
     report = list(set(report))
-    singo = [] # 그림 1
+    singo = []
     singo_count = [0]*l
     for i in report:
         user, singos = i.split()

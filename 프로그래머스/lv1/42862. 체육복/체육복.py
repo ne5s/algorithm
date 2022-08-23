@@ -1,12 +1,26 @@
+import copy
+from functools import reduce
+
 def solution(n, lost, reserve):
-    _reserve = sorted([r for r in reserve if r not in lost])
-    _lost = sorted([l for l in lost if l not in reserve])
-    
-    for r in _reserve:
-        f = r - 1
-        b = r + 1
-        if f in _lost:
-            _lost.remove(f)
-        elif b in _lost:
-            _lost.remove(b)
-    return n - len(_lost)
+    lost2 = sorted(copy.deepcopy(lost))
+    reserve2 = sorted(copy.deepcopy(reserve))
+    for i in reserve:
+        if i in lost:
+            lost2.remove(i)
+            reserve2.remove(i)
+    for i in reserve2:
+        if i - 1 in lost2:
+            lost2.remove(i - 1)
+        elif i + 1 in lost2:
+            lost2.remove(i + 1)
+
+    return n - len(lost2)
+#     lost2 = set(lost) - set(reserve)
+#     reserve2 = set(reserve) - set(lost)
+#     for i in reserve2:
+#         if i-1 in lost2:
+#             lost2.remove(i-1)
+#         elif i+1 in lost2:
+#             lost2.remove(i+1)
+            
+#     return n - len(lost2)

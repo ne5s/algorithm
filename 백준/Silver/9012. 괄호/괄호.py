@@ -5,19 +5,16 @@ for i in range(n):
     st = []
     flag = 0
     a = stdin.readline().rstrip()
-    if flag == 1:
-        continue
-    for j in range(len(a)):
-        if len(st) == 0 and a[j] == ")":
-            print("NO")
-            flag = 1
-            break
-        elif a[j] == "(":
-            st.append(a[j])
-        elif j != 0 and a[j] == ")":
+    for j in a:
+        if j == "(":
+            st.append(j)
+        else:
+            if len(st) == 0:
+                flag = 1
+                break
             st.pop()
-        if j == len(a)-1 and len(st) == 0:
-            print("YES")
-        elif j == len(a) -1:
-            print("NO")
+    if len(st) == 0 and flag == 0:
+        print("YES")
+    else:
+        print("NO")
 

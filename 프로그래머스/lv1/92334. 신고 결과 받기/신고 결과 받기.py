@@ -1,14 +1,12 @@
 def solution(id_list, report, k):
-    l = len(id_list)
-    answer = [0]*l
-    report = list(set(report))
-    singo = []
-    singo_count = [0]*l
-    for i in report:
-        user, singos = i.split()
-        singo.append([user, singos])
-        singo_count[id_list.index(singos)] += 1
-    for u,s in singo:
-        if singo_count[id_list.index(s)] >= k:
-            answer[id_list.index(u)] += 1
+    answer = [0] * len(id_list)    
+    reports = {x : 0 for x in id_list}
+
+    for r in set(report):
+        reports[r.split()[1]] += 1
+
+    for r in set(report):
+        if reports[r.split()[1]] >= k:
+            answer[id_list.index(r.split()[0])] += 1
+
     return answer

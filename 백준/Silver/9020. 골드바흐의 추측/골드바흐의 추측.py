@@ -1,3 +1,4 @@
+# 내 코드
 from sys import stdin
 import math
 
@@ -11,13 +12,17 @@ for i in range(2, int(math.sqrt(len(li))) + 1):
             li[i * j] = False
             j += 1
 
+answer = ''
 for _ in range(T):
-    n = int(stdin.readline())
-    li2 = []
-    for q in range(2, len(li)):
-        if li[q]:
-            n2 = n - q
-            if li[n2]:
-                li2.append([min(q, n2), max(q, n2), abs(q-n2)])
-    li2.sort(key=lambda x:x[2])
-    print(li2[0][0], li2[0][1])
+    N = int(input())
+    if N == 4:
+        answer += "2 2\n"
+        continue
+    harf_N = N // 2
+    if not harf_N % 2:
+        harf_N += 1
+    for i in range(harf_N, N, 2):
+        if li[i] and li[N - i]:
+            answer += "{} {}".format(N - i, i) + "\n"
+            break
+print(answer, end="")

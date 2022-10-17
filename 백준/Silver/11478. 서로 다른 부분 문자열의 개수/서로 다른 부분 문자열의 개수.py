@@ -1,11 +1,11 @@
 from sys import stdin
 
 S = stdin.readline().rstrip()
-li = set()
+d = dict()
 for i in range(len(S)):
     substr = S[i]
-    li.add(substr)
+    d[substr] = 0
     for j in range(i+1, len(S)):
         substr += S[j]
-        li.add(substr)
-print(len(li))
+        d[substr] = 0
+print(len(d))

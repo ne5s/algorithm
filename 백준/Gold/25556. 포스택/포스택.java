@@ -1,6 +1,4 @@
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
@@ -13,28 +11,28 @@ public class Main {
         sc.nextLine();
         String[] elements = sc.nextLine().split(" ");
 
-        int cnt = 0;
-        List<Integer> stackMax = new ArrayList<>(4);
-        stackMax.add(0);
-        stackMax.add(0);
-        stackMax.add(0);
-        stackMax.add(0);
+        Deque<Integer>[] stacks = new Deque[4];
+        for (int i = 0; i < 4; i++) {
+            stacks[i] = new ArrayDeque<>();
+            stacks[i].push(0);
+        }
+
+        boolean flag = false;
 
         for (String element : elements) {
             int num = Integer.parseInt(element);
+            flag = false;
+
             for (int i = 0; i < 4; i++) {
-                if (stackMax.get(i) < num && stackMax.get(i) == 0) {
-                    cnt++;
-                }
-                if (stackMax.get(i) < num) {
-                    stackMax.set(i, num);
+                if (num > stacks[i].peek()) {
+                    stacks[i].push(num);
+                    flag = true;
                     break;
                 }
-                if (i == 3 && cnt == 4) {
-                    return "NO";
-                }
             }
+            if (!flag) break;
         }
-        return "YES";
+        if (flag) return "YES";
+        else return "NO";
     }
 }
